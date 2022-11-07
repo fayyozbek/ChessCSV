@@ -22,4 +22,11 @@ public class ChessPlayer
         this.GamesNum = gamesNum;
         this.YearB = yearB;
     }
+
+    public override string ToString()
+    {
+        string line = "++ " + this.Rank + " ++ " + this.Name + " ++ " + this.Title + " ++ " + this.Country +
+                      " ++ " + this.Rating + " ++ " + this.GamesNum + " ++ " + this.YearB + " ++";
+        return line;
+    }
 }

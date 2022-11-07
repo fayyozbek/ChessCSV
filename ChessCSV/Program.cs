@@ -1,7 +1,8 @@
-﻿using System.Globalization;
+﻿namespace ChessCSV;
+ 
+using System.Globalization;
+using System.IO;
 using Microsoft.Extensions.Logging;
-namespace ChessCSV;
- using System.IO;
 
 
 class Program {
@@ -40,7 +41,7 @@ class Program {
         var firstTenPlayer = models.Where(models => models.YearB < 1980).Take(10);
         foreach (var player in firstTenPlayer)
         {
-            logger.LogInformation(counter+"++ "+player.Rank+ " ++ "+player.Name+ " ++ "+player.Title+ " ++ "+player.Country+ " ++ "+player.Rating+ " ++ "+player.GamesNum+ " ++ "+player.YearB+" ++");
+            logger.LogInformation(player.ToString());
             
         }
        
