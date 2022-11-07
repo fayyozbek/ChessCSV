@@ -16,19 +16,33 @@ class Program {
         });
         ILogger logger = loggerFactory.CreateLogger<Program>();
         var reader = new StreamReader("/home/fayyozbek/Top100ChessPlayers.csv");
-        List<ChessPlayer> models=new List<ChessPlayer>(); 
+        List<ChessPlayer> models=new List<ChessPlayer>();
+        bool firstLineSkiped = false;
         while (!reader.EndOfStream)
         {
             var line = reader.ReadLine();
-            var values = line.Split(";");
-            ChessPlayer player = new ChessPlayer(values[0], values[1], values[2], values[3], values[4], values[5],
-                values[6]);
-            models.Add(player);
+            if (firstLineSkiped)
+            {
+                
+                var values = line.Split(";");
+                int rank = Int32.Parse(values[0]);
+                int rating = Int32.Parse(values[4], NumberStyles.AllowThousands);
+                int games = Int32.Parse(values[5], NumberStyles.AllowThousands);
+                int yearB = Int32.Parse(values[6], NumberStyles.AllowThousands);
+                
+                ChessPlayer player = new ChessPlayer(rank, values[1], values[2], values[3], rating, games, yearB);
+                models.Add(player);
+            }
+            else
+            {
+                firstLineSkiped = true;
+            }
+            
         }
         int counter = 1;
         for (int i = 1; i < models.Count; i++)
         {
-            if (Int32.Parse(models[i].YearB, NumberStyles.AllowThousands) <1980)
+            if (models[i].YearB <1980)
             {
                 logger.LogInformation("++ "+models[i].Rank+ " ++ "+models[i].Name+ " ++ "+models[i].Title+ " ++ "+models[i].Country+ " ++ "+models[i].Rating+ " ++ "+models[i].GamesNum+ " ++ "+models[i].YearB+" ++");
                 counter++;

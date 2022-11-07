@@ -4,15 +4,15 @@ namespace ChessCSV;
 
 public class ChessPlayer
 {   
-    public string Rank { get; set; }
+    public int Rank { get; set; }
     public string Name { get; set;}
     public string Title { get; set; }
     public string Country { get; set; }
-    public string Rating { get; set; }
-    public string GamesNum { get; set; }
-    public string YearB { get; set; }
+    public int Rating { get; set; }
+    public int GamesNum { get; set; }
+    public int YearB { get; set; }
 
-    public ChessPlayer(string rank, string name, string title, string country, string rating, string gamesNum, string yearB)
+    public ChessPlayer(int rank, string name, string title, string country, int rating, int gamesNum, int yearB)
     {
         this.Rank = rank;
         this.Name = name;
