@@ -1,7 +1,5 @@
 ﻿using System.Globalization;
-using System;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
 namespace ChessCSV;
  using System.IO;
 
@@ -39,19 +37,13 @@ class Program {
             }
             
         }
-        int counter = 1;
-        for (int i = 1; i < models.Count; i++)
+        var firstTenPlayer = models.Where(models => models.YearB < 1980).Take(10);
+        foreach (var player in firstTenPlayer)
         {
-            if (models[i].YearB <1980)
-            {
-                logger.LogInformation("++ "+models[i].Rank+ " ++ "+models[i].Name+ " ++ "+models[i].Title+ " ++ "+models[i].Country+ " ++ "+models[i].Rating+ " ++ "+models[i].GamesNum+ " ++ "+models[i].YearB+" ++");
-                counter++;
-            }
-
-            if (counter > 10)
-                i = models.Count;
-
+            logger.LogInformation(counter+"++ "+player.Rank+ " ++ "+player.Name+ " ++ "+player.Title+ " ++ "+player.Country+ " ++ "+player.Rating+ " ++ "+player.GamesNum+ " ++ "+player.YearB+" ++");
+            
         }
+       
         
 
     }
